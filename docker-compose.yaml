@@ -6,6 +6,8 @@ services:
     image: elasticsearch
     volumes:
       - "./elasticsearch:/usr/share/elasticsearch/data"
+    ports:
+      - 9200:9200
 
   server:
     image: node:6.7
