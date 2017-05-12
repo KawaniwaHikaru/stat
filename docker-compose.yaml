@@ -1,13 +1,28 @@
 version: '2'
 services:
 
-# Redis Container
-  elasticsearch:
-    image: elasticsearch
+
+## Redis Container
+#  elasticsearch:
+#    image: elasticsearch
+#    volumes:
+#      - "./elasticsearch:/usr/share/elasticsearch/data"
+#    ports:
+#      - 9200:9200
+#  kibana:
+#    image: kibana
+#    links:
+#      - elasticsearch:elasticsearch
+#    ports:
+#      - 5601:5601
+
+  db:
+    image: mysql
     volumes:
-      - "./elasticsearch:/usr/share/elasticsearch/data"
-    ports:
-      - 9200:9200
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+      - ./db:/var/lib/mysql:rw
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysql
 
   server:
     image: node:6.7
