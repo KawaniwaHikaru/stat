@@ -9,9 +9,9 @@
  */
 angular.module('statFrontendApp')
     .controller('MainCtrl', [
-        '$scope', 'statAPI', 'Upload',
+        '$scope', 'statAPI', 'Upload', '$location',
 
-        function ($scope, statAPI, Upload) {
+        function ($scope, statAPI, Upload, $location) {
             $scope.file = '';
             $scope.weighted = false;
             $scope.from = new Date('2016-02-01');
@@ -47,7 +47,7 @@ angular.module('statFrontendApp')
             // upload on file select or drop
             $scope.upload = function (file) {
                 Upload.upload({
-                    url: 'http://localhost:3000/csv/upload',
+                    url: 'http://' + $location.host() + ':3001/csv/upload',
                     data: {file: file}
                 }).then(function (resp) {
                     console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);

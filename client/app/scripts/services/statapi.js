@@ -9,11 +9,13 @@
  */
 angular.module('statFrontendApp')
     .factory('statAPI', [
-        '$http', '$cacheFactory',
-        function ($http) {
+        '$http', '$location',
+        function ($http, $location) {
             // AngularJS will instantiate a singleton by calling "new" on this function
 
-            let urlBase = 'http://localhost:3001';
+            console.log($location.host());
+
+            let urlBase = 'http://' + $location.host() + ':3001';
             let apiFactory = {};
 
             // handle upload
