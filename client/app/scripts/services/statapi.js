@@ -13,7 +13,7 @@ angular.module('statFrontendApp')
         function ($http) {
             // AngularJS will instantiate a singleton by calling "new" on this function
 
-            let urlBase = 'http://localhost:3000';
+            let urlBase = 'http://localhost:3001';
             let apiFactory = {};
 
             // handle upload

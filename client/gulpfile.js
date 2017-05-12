@@ -72,7 +72,7 @@ gulp.task('clean:tmp', function (cb) {
 });
 
 gulp.task('start:client', ['start:server', 'styles'], function () {
-  openURL('http://localhost:9000');
+  openURL('http://localhost:3000');
 });
 
 gulp.task('start:server', function () {
@@ -80,7 +80,7 @@ gulp.task('start:server', function () {
     root: [yeoman.temp, yeoman.app],
     livereload: true,
     // Change this to '0.0.0.0' to access the server from outside.
-    port: 9000
+    port: 3000
   });
 });
 
@@ -125,7 +125,7 @@ gulp.task('serve:prod', function () {
   $.connect.server({
     root: [yeoman.dist],
     livereload: true,
-    port: 9000
+    port: 3000
   });
 });
 
