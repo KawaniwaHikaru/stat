@@ -4,7 +4,12 @@ const csv = require('fast-csv');
 const fs = require('fs');
 const rankingDAO = require('../dao/RankingDao');
 
-router.post('/', function (req, res, next) {
+router.get('/purge', function (req, res, next) {
+    rankingDAO.purge(req,res, next);
+    res.status(200);
+});
+
+router.post('/upload', function (req, res, next) {
 
     if (!req.files)
         return res.status(400).send('No files were uploaded.');

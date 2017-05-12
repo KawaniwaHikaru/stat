@@ -1,8 +1,0 @@
-<form>
-  <div ng-repeat="(key, value) in ticket.attributes">
-    <label>{{key}}</label>
-    <span>{{value}}</span>
-  </div>
-  <input type="text" ng-model="ticket.attributes.price">
-  <input type="submit" value="save" ng-click="saveTicket()">
-</form>
