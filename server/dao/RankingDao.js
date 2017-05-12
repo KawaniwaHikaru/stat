@@ -36,9 +36,14 @@ module.exports = {
         });
     },
     queryRange: function (req, res, next) {
+
+        var param = req.query || req.params;
+        param.from = param.from || '2000-01-01';
+        param.to = param.to || '2999-01-01';
+
         pool.getConnection(function (err, connection) {
-            connection.query($sql.queryAverage, ['2000-01-01', '2999-12-31'], function (err, result) {
-                if (! err) {
+            connection.query($sql.queryAverage, [param.from, param.to], function (err, result) {
+                if (!err) {
                     res.json(JSON.stringify(result));
                 }
                 else {
@@ -49,10 +54,15 @@ module.exports = {
         });
     },
     queryWeightedRange: function (req, res, next) {
+
+        var param = req.query || req.params;
+        param.from = param.from || '2000-01-01';
+        param.to = param.to || '2999-01-01';
+
         pool.getConnection(function (err, connection) {
             // console.log($sql.queryWeightAverage);
-            connection.query($sql.queryWeightAverage, ['2000-01-01', '2999-12-31'], function (err, result) {
-                if (! err) {
+            connection.query($sql.queryWeightAverage, [param.from, param.to], function (err, result) {
+                if (!err) {
                     res.json(JSON.stringify(result));
                 }
                 else {
@@ -66,7 +76,7 @@ module.exports = {
         pool.getConnection(function (err, connection) {
             // console.log($sql.queryWeightAverage);
             connection.query($sql.queryWeightAverage, ['2000-01-01', '2999-12-31'], function (err, result) {
-                if (! err) {
+                if (!err) {
                     res.json(JSON.stringify(result));
                 }
                 else {

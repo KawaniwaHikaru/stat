@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const rankingDAO = require('../dao/RankingDao');
 
-router.get('/', function(req, res, next) {
+router.get('/avg', function(req, res, next) {
   rankingDAO.queryRange(req, res, next);
 
 });
