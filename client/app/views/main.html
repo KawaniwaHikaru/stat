@@ -1,0 +1,9 @@
+{{results}}
+<table>
+    <tr ng-repeat="(idx, rank) in results">
+        <!-- <td>{{idx}}</td> -->
+        <!-- <td><img src="{{rank.attributes.cover_image_uri}}"></td> -->
+        <td><a href="/#!/rank/{{rank.id}}">{{rank.attributes.title}}</a></td>
+        <td><p hidden>{{rank}}</p></td>
+    </tr>
+</table>
