@@ -72,16 +72,10 @@ module.exports = {
             });
         });
     },
-    purge: function (req, res, next) {
+    purge: function () {
         pool.getConnection(function (err, connection) {
             // console.log($sql.queryWeightAverage);
             connection.query($sql.purge, [], function (err, result) {
-                if (!err) {
-                    res.json(JSON.stringify(result));
-                }
-                else {
-                    res.json(err);
-                }
                 connection.release();
             });
         });
