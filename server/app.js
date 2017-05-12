@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 
-const index = require('./routes/index');
+const query = require('./routes/query');
 const upload = require('./routes/upload');
 const app = express();
 
@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(fileUpload());
 
 // register routes
-app.use('/', index);
+app.use('/query', query);
 app.use('/upload', upload);
 
 // catch 404 and forward to error handler

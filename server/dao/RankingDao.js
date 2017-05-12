@@ -61,5 +61,19 @@ module.exports = {
                 connection.release();
             });
         });
+    },
+    purge: function (req, res, next) {
+        pool.getConnection(function (err, connection) {
+            // console.log($sql.queryWeightAverage);
+            connection.query($sql.queryWeightAverage, ['2000-01-01', '2999-12-31'], function (err, result) {
+                if (! err) {
+                    res.json(JSON.stringify(result));
+                }
+                else {
+                    res.json(err);
+                }
+                connection.release();
+            });
+        });
     }
 };

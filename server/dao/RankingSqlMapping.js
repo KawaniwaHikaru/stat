@@ -5,6 +5,7 @@ var ranking = {
     'VALUES(?,?,?,?,?,?,?,?,?)',
     // update:'update ranking set name=?, age=? where id=?',
     delete: 'delete from ranking where id=?',
+    purge: 'delete from ranking',
     queryById: 'select * from ranking where id=?',
     queryAverage: 'SELECT `date`, ' +
     'avg(google) as google, ' +
