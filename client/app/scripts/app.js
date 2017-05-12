@@ -9,23 +9,20 @@
  * Main module of the application.
  */
 angular
-  .module('statFrontendApp', [
-    'ngRoute'
+    .module('statFrontendApp', [
+        'ngRoute',
+        // 'jkuri.datepicker',
+        'ngFileUpload'
     ])
-  // .value("key", "value")
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/upload', {
-        templateUrl: 'views/upload.html',
-        controller: 'uploadCtrl',
-        controllerAs: 'upload'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+    // .value("key", "value")
+    .config(function ($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'views/main.html',
+                controller: 'MainCtrl',
+                controllerAs: 'main'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
+    });

@@ -1,9 +1,31 @@
-{{results}}
-<table>
-    <tr ng-repeat="(idx, rank) in results">
-        <!-- <td>{{idx}}</td> -->
-        <!-- <td><img src="{{rank.attributes.cover_image_uri}}"></td> -->
-        <td><a href="/#!/rank/{{rank.id}}">{{rank.attributes.title}}</a></td>
-        <td><p hidden>{{rank}}</p></td>
+From: <input type="date" data-date-format="yyyy-mm-dd" ng-model="from" ng-change="requery()"><br/>
+To: <input type="date" data-date-format="yyyy-mm-dd" ng-model="to" ng-change="requery()"><br/>
+Weighted: <input type="checkbox" ng-model="weighted" ng-change="requery()">
+<table class="table">
+    <thead>
+    <tr>
+        <th>Date</th>
+        <th>Google</th>
+        <th>Google Base Rank</th>
+        <th>Yahoo</th>
+        <th>Bing</th>
     </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="rank in results track by rank.date ">
+        <td>{{rank.date | date}}</td>
+        <td>{{rank.google | number:2}}</td>
+        <td>{{rank.googleBaseRank | number:2}}</td>
+        <td>{{rank.yahoo | number:2}}</td>
+        <td>{{rank.bing | number:2}}</td>
+    </tr>
+    </tbody>
 </table>
+
+<hr/>
+<form name="form">
+    {{ file }}
+    <button class="button" ngf-select ng-model="file" name="file">Select a File </button>
+    <button type="submit" ng-click="submit()">Submit</button>
+</form>
+<!--<button type="button" ng-click="purge()">purge</button>-->
