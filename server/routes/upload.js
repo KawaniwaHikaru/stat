@@ -1,11 +1,11 @@
 const express = require('express');
-const ElasticsearchCSV = require('./elasticsearch-csv');
 const router = express.Router();
 const csv = require('fast-csv');
 const fs = require('fs');
+const rankingDAO = require('../dao/RankingDao');
 
+router.post('/', function (req, res, next) {
 
-router.post('/', function (req, res) {
     if (!req.files)
         return res.status(400).send('No files were uploaded.');
 
@@ -17,28 +17,13 @@ router.post('/', function (req, res) {
         if (err)
             return res.status(500).send(err);
 
-        // fs.createReadStream("./tmp.csv",  {encoding: 'utf-16le'})
-        //     .pipe(csv({headers: true, delimiter: "\t"}))
-        //     .on("data", function(data){
-        //         console.log(data);
-        //     })
-        //     .on("end", function(){
-        //         res.status(200).json("{'result':'ok'}");
-        //     });
-
-        const esCSV = new ElasticsearchCSV({
-            es: {index: 'stats', type: 'rank', host: 'elasticsearch:9200'},
-            csv: {filePath: './tmp.csv', headers: true, delimiter: "\t"}
-        });
-
-        esCSV.import()
-            .then(function (response) {
-                // Elasticsearch response for the bulk insert
-                res.json('ok');
-                // res.status(204).end()
-            }, function (err) {
-                // throw error
-                throw err;
+        fs.createReadStream("./tmp.csv", {encoding: 'utf-16le'})
+            .pipe(csv({headers: true, delimiter: "\t"}))
+            .on("data", function (data) {
+                rankingDAO.add(data);
+            })
+            .on("end", function () {
+                res.status(200).json("{'result':'ok'}");
             });
 
     });
