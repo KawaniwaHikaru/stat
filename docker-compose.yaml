@@ -1,0 +1,27 @@
+version: '2'
+services:
+
+# Redis Container
+  elasticsearch:
+    image: elasticsearch
+    volumes:
+      - "./elasticsearch:/usr/share/elasticsearch/data"
+
+  server:
+    image: node:6.7
+    volumes:
+      - "./server:/root/app/"
+    ports:
+      - 3000:3000
+    command: npm start
+    working_dir: "/root/app"
+  
+    
+  client:
+    image: node:6.7
+    volumes:
+      - "./client:/root/app/"
+    ports:
+      - 80:3000
+    command: npm start
+    working_dir: "/root/app"
