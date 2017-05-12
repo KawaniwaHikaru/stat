@@ -30,15 +30,14 @@ services:
       - "./server:/root/app/"
     ports:
       - 3000:3000
-    command: npm start
     working_dir: "/root/app"
-  
-    
+    command: npm start
+
   client:
     image: node:6.7
     volumes:
       - "./client:/root/app/"
     ports:
       - 80:3000
-    command: npm start
     working_dir: "/root/app"
+    command: npm start
